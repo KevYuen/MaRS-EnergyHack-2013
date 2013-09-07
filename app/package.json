@@ -1,0 +1,11 @@
+{
+    "name": "MaRS-EnergyHack-2013",
+    "version": "0.0.1",
+    "description": "MaRS EnergyHack 2013",
+    "dependencies": {
+        "express": "~3.3.8",
+        "passport": "~0.1.17",
+        "passport-local": "~0.1.6",
+        "underscore": "~1.5.1"
+    }
+}
