@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express();
 
-app.get('/', function(req, res) {
+app.get('/app/', function(req, res) {
     res.json({
         hello: 'world'
     });
