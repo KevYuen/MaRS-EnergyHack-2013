@@ -1,10 +1,8 @@
 !!! 5
 html
   head
-    title EnerDonk
+    title EnerText
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    //
-       Bootstrap 
     link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(href='http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600', rel='stylesheet')
     style
@@ -29,6 +27,14 @@ html
       }
       /* Override B3 .panel adding a subtly transparent background */
       .panel {
+      position: absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      width: 550px;
+      height: 500px;
+      margin:auto;
       background-color: rgba(255, 255, 255, 0.9);
       }
       .margin-base-vertical {
@@ -38,26 +44,20 @@ html
     .container
       .row
         .col-lg-6.col-offset-3.panel
-          h1.margin-base-vertical Have you ever seen the rain?
+          h1.margin-base-vertical Have you ever forgotten to turn off your lights?
           p
-            | Someone told me long ago there's a calm before the storm. I know, It's been comin for some time.
+            | Someone told me long ago there's a calm before the storm.
           p
-            | When it's over, so they say, it'll rain a sunny day. I know,    Shinin down like water.
+            | When you forget to turn off your light, your wife become a storm.
           p
-            | I want to know, have you ever seen the rain?
+            | I want to know, have you ever forget to turn off the light?
           form.margin-base-vertical
             p.input-group
+              label Phone Number
               span.input-group-addon
-                span.icon-envelope
-              input.form-control.input-large(type='text', name='email', placeholder='jonsnow@knowsnothi.ng')
+              input.form-control.input-large(type='text', name='phone-number', placeholder='XXX-XXX-XXXX')
             p.help-block.text-center
               small We won't send you spam. Unsubscribe at any time.
             p.text-center
               button.btn.btn-success.btn-large(type='submit') Submit
           .margin-base-vertical
-        //
-           //main content 
-      //
-         //row 
-    //
-       //container 
