@@ -6,7 +6,7 @@ html
     link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(href='http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600', rel='stylesheet')
     script( src='js/jquery-1.10.2.min.js')
-    script( src='js/index.js')
+    script( src='js/confirmPage.js')
     style
       /* http://css-tricks.com/perfect-full-page-background-image/ */
       html {
@@ -35,31 +35,23 @@ html
       left:0;
       right:0;
       width: 550px;
-      height: 500px;
+      height: 200px;
       margin:auto;
       background-color: rgba(255, 255, 255, 0.9);
       }
       .margin-base-vertical {
       margin: 40px 0;
       }
+      .confirm-button{
+        margin-right:auto;
+        margin-left:auto;
+      }
   body
     .container
       .row
         .col-lg-6.col-offset-3.panel
-          h1.margin-base-vertical Have you ever forgotten to turn off your lights?
-          p
-            | Someone told me long ago there's a calm before the storm.
-          p
-            | When you forget to turn off your light, your wife become a storm.
-          p
-            | I want to know, have you ever forget to turn off the light?
+          h1.Click the following button to finish the registration
           div.margin-base-vertical
-            p.input-group
-              label Phone Number
-              span.input-group-addon
-              input.form-control.input-large(id='phone-number', type='tel', name='phone-number', placeholder='XXX-XXX-XXXX')
-            p.help-block.text-center
-              small We won't send you spam. Unsubscribe at any time.
-            p.text-center
-              button.btn.btn-success.btn-large(onclick='loginPopup()') Start Now!
+            p.input-group.confirm-button
+              button.btn.btn-success.btn-large(onclick='confirm()') Confirm
           .margin-base-vertical

@@ -16,6 +16,7 @@ var routes = require('./controllers/routes.js');
 
 //routes
 app.get('/', routes.index);
+app.get('/callback', routes.confirm);
 
 app.listen(3000);
 console.log('Listening on port 3000');
