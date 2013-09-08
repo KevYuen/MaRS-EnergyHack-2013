@@ -4,5 +4,7 @@
 env
 node_modules
 
+app/models/config.js
+
 *.pem
 *.pyc

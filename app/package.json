@@ -7,7 +7,9 @@
         "passport": "~0.1.17",
         "passport-local": "~0.1.6",
         "underscore": "~1.5.1",
-        "sequelize": "",
-        "jade": ""
+        "sequelize": "~2.0.0",
+        "mysql": "~2.0.0",
+        "jade": "~0.35.0",
+        "needle": "~0.5.9"
     }
 }
