@@ -1,12 +1,57 @@
+import time
+from datetime import datetime
 import db
 from sms import SMS
+from greenbutton import GreenButton
+from bs4 import BeautifulSoup
+
 
 class Analytics(object):
     def __init__(self):
-        pass
+        self.sms = SMS()
+        self.greenbutton = GreenButton()
+        self.duration = 60 * 24 * 3600
+        self.start = int(time.time()) - 24 * 3600 - self.duration
 
     def run(self, user_id):
         user = db.User.get(db.User.id == user_id)
-        sms = SMS()
-        sms.send(user.phone, 'Did you get this, Kevin?')
-        return 'I got %s' % user.phone
+        xml = self.greenbutton.getUsagePointData(user.token, self.start, self.duration)
+
+        soup = BeautifulSoup(xml)
+
+        blocks = []
+        for entry in soup.find_all('entry'):
+            if entry.content and entry.content.find('ns2:intervalblock'):
+                blocks = entry.content.find_all('ns2:intervalblock')
+
+        raw = {}
+        for block in blocks:
+            readings = block.find_all('ns2:intervalreading')
+            for reading in readings:
+                dt = datetime.fromtimestamp(int(reading.find('ns2:timeperiod').find('ns2:start').get_text()))
+                weekday = dt.weekday()
+                if weekday not in raw:
+                    raw[weekday] = {}
+                if dt.hour not in raw[weekday]:
+                    raw[weekday][dt.hour] = []
+                raw[weekday][dt.hour].append(int(reading.find('ns2:cost').get_text()))
+
+        averages = {}
+        for weekday in raw:
+            averages[weekday] = {}
+            for hour in weekday:
+                averages[weekday][hour] = (hour, sum(raw[weekday][hour]) / len(raw[weekday][hour]))
+
+        today = datetime.today()
+        today_averages = averages[today.weekday()]
+        peak_cost = 0
+        peak_hour = 0
+        for hour in today_averages:
+            if today_averages[hour] > peak_cost:
+                peak_cost = today_averages[hour]
+                peak_hour = hour
+
+        self.sms.send(user.phone, 'Welcome to Spring Gauge! Your usage on %ss is at %s:00') % \
+                (today.strftime('%A'), peak_hour)
+        return {'status': 'success'}
+

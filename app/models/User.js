@@ -20,7 +20,7 @@ var User = db.define('User', {
         allowNull: false
     },
     token: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     }
 }, {

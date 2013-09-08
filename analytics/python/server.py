@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, jsonify
 from analytics import Analytics
 
 app = Flask(__name__)
@@ -8,7 +7,9 @@ app = Flask(__name__)
 def analytics():
     user_id = int(request.form['id'])
     analytics = Analytics()
-    return analytics.run(user_id)
+    result = analytics.run(user_id)
+    #return jsonify(**result)
+    return result
 
 if __name__ == '__main__':
     app.debug = True
