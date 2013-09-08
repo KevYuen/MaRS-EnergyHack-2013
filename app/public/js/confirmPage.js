@@ -9,10 +9,6 @@ function confirm(){
 	$.post(url, {phone : phoneNumber, token : token}).done(function(data){
 		if (data.status == 200){
 			$.post('http://ec2-184-73-71-236.compute-1.amazonaws.com/analytics', {id: data.id}).done(function(){
-				if (data.status != 200){
-					console.log("user saved to database");
-					console.log("upload your stuff kent!");
-				} else {
 					window.close();
 				}
 			});
