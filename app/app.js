@@ -11,11 +11,17 @@ app.configure(function() {
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
-var routes = require('./controllers/routes.js');
+var controls = require('./controllers/controls.js');
 
 //routes
-app.get('/', routes.index);
-app.get('/callback', routes.confirm);
+app.get('/', controls.index);
+app.get('/callback', controls.confirm);
+
+var User = require('./models/User.js');
+
+app.post('/confirm', controls.confirmUser);
+
 
 app.listen(3000);
 console.log('Listening on port 3000');
+
