@@ -20,30 +20,6 @@ exports.confirmUser = function(req, res){
 	}).save().error(function() {
 		res.send({status:500});
 	}).success(function(user) {
-		var data = querystring.stringify({
-     		id: user.id 
-     	});
-     	var options = {
-   			host: 'http://ec2-184-73-71-236.compute-1.amazonaws.com',
-    		port: 80,
-    		path: '/analytics/',
-    		method: 'POST',
-    		headers: {
-        		'Content-Type': 'application/x-www-form-urlencoded',
-        		'Content-Length': data.length
-    		}
-		};
-
-		var req = http.request(options, function(res) {
-    		res.setEncoding('utf8');
-    		res.on('data', function (chunk) {
-        		console.log("body: " + chunk);
-    		});
-		});
-
-		req.write(data);
-		req.end();
-
-		res.send({status:200});
+		res.send({status:200, id: user.id});
 	});
 }

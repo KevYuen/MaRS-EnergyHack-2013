@@ -3,15 +3,14 @@ function confirm(){
 		phoneNumber = getURLParameter('phoneNumber'),
 		url = "http://ec2-184-73-71-236.compute-1.amazonaws.com/confirm";
 
-	console.log(accessCode);
-	console.log(phoneNumber);
-
 	//TODO: convert access code to token
 	token = "";
 
 	$.post(url, {phone : phoneNumber, token : token}).done(function(data){
 		if (data.status == 200){
-			window.close();
+			$.post('http://ec2-184-73-71-236.compute-1.amazonaws.com/analytics', {id: data.id}).done(function(){
+				window.close();
+			});
 		}else{
 			alert("An error has occured, please try again!");
 		}
