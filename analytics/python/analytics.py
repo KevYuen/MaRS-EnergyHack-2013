@@ -19,11 +19,13 @@ class Analytics(object):
 
         soup = BeautifulSoup(xml)
 
+        # Locate the data we care about
         blocks = []
         for entry in soup.find_all('entry'):
             if entry.content and entry.content.find('ns2:intervalblock'):
                 blocks = entry.content.find_all('ns2:intervalblock')
 
+        # Group the data by weekday and by hour
         raw = {}
         for block in blocks:
             readings = block.find_all('ns2:intervalreading')
@@ -36,12 +38,14 @@ class Analytics(object):
                     raw[weekday][dt.hour] = []
                 raw[weekday][dt.hour].append(int(reading.find('ns2:cost').get_text()))
 
+        # Determine the average for each hour on each weekday
         averages = {}
         for weekday in raw.keys():
             averages[weekday] = {}
             for hour in raw[weekday].keys():
                 averages[weekday][hour] = sum(raw[weekday][hour]) / len(raw[weekday][hour])
 
+        # Find the peak for whichever weekday tomorrow is
         tomorrow = datetime.today() + timedelta(days=1)
         weekday = (tomorrow.weekday() + 1) % 7
         today_averages = averages[weekday]
@@ -52,6 +56,7 @@ class Analytics(object):
                 peak_cost = today_averages[hour]
                 peak_hour = hour
 
+        # Send that peak to the user's phone
         message = 'Welcome to Spring Gauge! Your peak usage on %ss is at %s%s. Try turning off some lights at that time.'
         peak = datetime(tomorrow.year, tomorrow.month, tomorrow.day, peak_hour)
         self.sms.send(user.phone, message % (tomorrow.strftime('%A'), int(peak.strftime('%I')), peak.strftime('%p')))
