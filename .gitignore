@@ -5,6 +5,7 @@ env
 node_modules
 
 app/models/config.js
+analytics/python/config.py
 
 *.pem
 *.pyc
