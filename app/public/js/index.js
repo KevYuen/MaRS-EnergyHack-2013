@@ -5,7 +5,7 @@ function loginPopup(){
 		//return_url = "http://localhost:3000/callback?phoneNumber=";
 
 	phoneNumber = replaceAll("-", "", phoneNumber);
-	if (phoneNumber.length != 10 && !(/^[0-9]+$/.test(phoneNumber))){
+	if (phoneNumber.length != 10){
 		$('#phone-number').val("");
 		return;
 	}
