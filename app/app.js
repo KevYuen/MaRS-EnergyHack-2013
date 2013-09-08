@@ -17,8 +17,6 @@ var controls = require('./controllers/controls.js');
 app.get('/', controls.index);
 app.get('/callback', controls.confirm);
 
-var User = require('./models/User.js');
-
 app.post('/confirm', controls.confirmUser);
 
 
