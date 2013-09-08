@@ -1,5 +1,5 @@
 var querystring = require('querystring');
-var User = require('./models/User.js');
+var User = require('../models/User.js');
 
 exports.index = function(req, res){
   res.render('index');
