@@ -49,12 +49,17 @@ html
       .width{
         width: 465px;
       }
+      .loading {
+        display: none;
+      }
   body
     .container
       .row
         .col-lg-6.col-offset-3.panel
           h1.center.width Click to finish the registration
           div.margin-base-vertical
-            p.input-group.center
+            p.btn-wrp.input-group.center
               button.btn.btn-success.btn-large(onclick='confirm()') Confirm
+            p.loading
+              img(src='/img/loading.gif')
           .margin-base-vertical
