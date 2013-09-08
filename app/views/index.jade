@@ -1,7 +1,7 @@
 !!! 5
 html
   head
-    title EnerText
+    title SpringGauge
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(href='http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600', rel='stylesheet')
@@ -10,7 +10,7 @@ html
     style
       /* http://css-tricks.com/perfect-full-page-background-image/ */
       html {
-      background: url(img/1374424489656.jpg) no-repeat center center fixed;
+      background: url(img/background.jpg) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -34,32 +34,32 @@ html
       bottom:0;
       left:0;
       right:0;
-      width: 550px;
-      height: 500px;
+      width: 490px;
+      height: 400px;
       margin:auto;
       background-color: rgba(255, 255, 255, 0.9);
       }
       .margin-base-vertical {
       margin: 40px 0;
       }
+      .center{
+        width: 200px;
+        left: 50px;
+        margin-right: auto;
+        margin-left: auto;
+      }
   body
     .container
       .row
         .col-lg-6.col-offset-3.panel
-          h1.margin-base-vertical Have you ever forgotten to turn off your lights?
+          h1.margin-base-vertical.center Spring Gauge
           p
-            | Someone told me long ago there's a calm before the storm.
-          p
-            | When you forget to turn off your light, your wife become a storm.
-          p
-            | I want to know, have you ever forget to turn off the light?
+            | You were smart enough to get a smart meter. Now get the smart app. Spring Gauge reduces your energy bill with a simple text. Using our prediction system, we warn you of impending spikes in your energy usage. Spring into action with Spring Gauge. 
           div.margin-base-vertical
             p.input-group
               label Phone Number
               span.input-group-addon
               input.form-control.input-large(id='phone-number', type='tel', name='phone-number', placeholder='XXX-XXX-XXXX')
-            p.help-block.text-center
-              small We won't send you spam. Unsubscribe at any time.
             p.text-center
               button.btn.btn-success.btn-large(onclick='loginPopup()') Start Now!
           .margin-base-vertical

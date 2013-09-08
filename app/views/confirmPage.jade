@@ -1,7 +1,7 @@
 !!! 5
 html
   head
-    title EnerText
+    title SpringGauge
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(href='http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600', rel='stylesheet')
@@ -10,7 +10,7 @@ html
     style
       /* http://css-tricks.com/perfect-full-page-background-image/ */
       html {
-      background: url(img/1374424489656.jpg) no-repeat center center fixed;
+      background: url(img/background.jpg) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -42,16 +42,19 @@ html
       .margin-base-vertical {
       margin: 40px 0;
       }
-      .confirm-button{
+      .center{
         margin-right:auto;
         margin-left:auto;
+      }
+      .width{
+        width: 465px;
       }
   body
     .container
       .row
         .col-lg-6.col-offset-3.panel
-          h1.Click the following button to finish the registration
+          h1.center.width Click to finish the registration
           div.margin-base-vertical
-            p.input-group.confirm-button
+            p.input-group.center
               button.btn.btn-success.btn-large(onclick='confirm()') Confirm
           .margin-base-vertical
