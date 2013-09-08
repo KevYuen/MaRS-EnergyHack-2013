@@ -8,8 +8,7 @@ def analytics():
     user_id = int(request.form['id'])
     analytics = Analytics()
     result = analytics.run(user_id)
-    #return jsonify(**result)
-    return result
+    return jsonify(**result)
 
 if __name__ == '__main__':
     app.debug = True

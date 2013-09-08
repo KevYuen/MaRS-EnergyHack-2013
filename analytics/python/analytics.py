@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import db
 from sms import SMS
 from greenbutton import GreenButton
@@ -37,21 +37,25 @@ class Analytics(object):
                 raw[weekday][dt.hour].append(int(reading.find('ns2:cost').get_text()))
 
         averages = {}
-        for weekday in raw:
+        for weekday in raw.keys():
             averages[weekday] = {}
-            for hour in weekday:
-                averages[weekday][hour] = (hour, sum(raw[weekday][hour]) / len(raw[weekday][hour]))
+            for hour in raw[weekday].keys():
+                averages[weekday][hour] = sum(raw[weekday][hour]) / len(raw[weekday][hour])
 
-        today = datetime.today()
-        today_averages = averages[today.weekday()]
+        tomorrow = datetime.today() + timedelta(days=1)
+        weekday = (tomorrow.weekday() + 1) % 7
+        today_averages = averages[weekday]
         peak_cost = 0
         peak_hour = 0
-        for hour in today_averages:
+        for hour in today_averages.keys():
             if today_averages[hour] > peak_cost:
                 peak_cost = today_averages[hour]
                 peak_hour = hour
 
-        self.sms.send(user.phone, 'Welcome to Spring Gauge! Your usage on %ss is at %s:00') % \
-                (today.strftime('%A'), peak_hour)
+        message = 'Welcome to Spring Gauge! Your peak usage on %ss is at %s%s. Try turning off some lights at that time.'
+        peak = datetime(tomorrow.year, tomorrow.month, tomorrow.day, peak_hour)
+        self.sms.send(user.phone, message % (tomorrow.strftime('%A'), int(peak.strftime('%I')), peak.strftime('%p')))
+
         return {'status': 'success'}
+
 
